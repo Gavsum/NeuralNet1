@@ -95,6 +95,7 @@ class NeuralNetwork(object):
     def activation_function(self, x):
         return 1 / (1 + np.exp(-x))
 
+    # Trains the model
     def train(self, inputs_list, targets_list):
         # Convert inputs list to 2d array
         inputs = np.array(inputs_list, ndmin=2).T
@@ -127,6 +128,7 @@ class NeuralNetwork(object):
         self.weights_input_to_hidden += self.lr * \
             np.dot((hidden_grad * hidden_errors), inputs.T)
 
+    # Runs model we have trained
     def run(self, inputs_list):
         # Run a forward pass through the network
         inputs = np.array(inputs_list, ndmin=2).T
@@ -143,6 +145,8 @@ class NeuralNetwork(object):
 
 
 # Calc mean standard error
+# Total error of network squared for normalization &
+# Ease of use with derivatives
 def MSE(y, Y):
     return np.mean((y - Y)**2)
 
